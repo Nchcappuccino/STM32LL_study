@@ -24,8 +24,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include <stdint.h>
 #include "yama_gpio.h"
+#include "yama_uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +59,13 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+int __io_putchar(uint8_t ch)
+{
+  transmitUSART2Char(&ch);
+  return ch;
+}
+
+
 /* USER CODE END 0 */
 
 /**
@@ -66,7 +75,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  setbuf(stdout, NULL);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -106,6 +115,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     writeOnBoardLED(readSW());
+    printf("hello world\r\n");
   }
   /* USER CODE END 3 */
 }

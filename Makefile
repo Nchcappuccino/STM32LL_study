@@ -47,6 +47,7 @@ Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_gpio.c \
 Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_usart.c \
 Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_rcc.c \
 Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_dma.c \
+Core/Src/syscalls.c \
 $(wildcard Peripheral/Src/*.c)
 
 # ASM sources
@@ -143,7 +144,7 @@ LDSCRIPT = STM32F303K8Tx_FLASH.ld
 # libraries
 LIBS = -lc -lm -lnosys 
 LIBDIR = 
-LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections -u _printf_float
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
